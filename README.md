@@ -4,6 +4,8 @@
 
 南京大学学生业余无线电协会（NJU HAM）的社团主页。一个不需要构建、开箱即用的静态网站，可以直接部署到 GitHub Pages。
 
+**线上地址：** <https://njuham.github.io/homepage/>
+
 ## 技术说明
 
 - 纯 HTML + CSS + 原生 JavaScript，无框架、无依赖、无构建步骤。
@@ -61,7 +63,9 @@ python -m http.server 8000
 
 如果仓库名为 `<你的用户名>.github.io`，站点会直接部署在 `https://<你的用户名>.github.io/`。站内链接全部使用相对路径，两种部署方式都可以正常工作。
 
-> 如果以后更换了自定义域名，可在 `index.html` 中补充 `<link rel="canonical">`，并把 `og:image` 改为完整的绝对 URL。
+本仓库已启用 GitHub Pages（`main` 分支根目录），之后每次推送 `main` 都会自动重新发布。
+
+> 当前 canonical、`og:image`、`twitter:image` 与结构化数据已指向 `https://njuham.github.io/homepage/`。如果以后更换自定义域名，请全局替换这些绝对地址。
 
 ## 常见维护
 
@@ -80,20 +84,14 @@ python -m http.server 8000
 
 ### 修改社交分享图
 
-`img/og-cover.png` 是 1200 × 630 的分享预览图。部署后建议把 `index.html` 中的：
+`img/og-cover.png` 是 1200 × 630 的分享预览图。`index.html` 中的分享图地址已使用当前线上的绝对地址：
 
 ```html
-<meta property="og:image" content="img/og-cover.png">
-<meta name="twitter:image" content="img/og-cover.png">
+<meta property="og:image" content="https://njuham.github.io/homepage/img/og-cover.png">
+<meta name="twitter:image" content="https://njuham.github.io/homepage/img/og-cover.png">
 ```
 
-改为部署后的绝对地址，例如：
-
-```html
-<meta property="og:image" content="https://example.github.io/njuham/img/og-cover.png">
-```
-
-部分社交平台不会正确处理相对路径的 `og:image`。
+替换图片时保持文件名不变即可。若以后更换域名，请同步修改这两处以及 `canonical`、`og:url` 和结构化数据中的 `url` / `logo`。
 
 ### 更新活动与问答
 
