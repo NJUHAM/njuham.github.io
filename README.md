@@ -4,7 +4,7 @@
 
 南京大学学生业余无线电协会（Nanjing University Student Amateur Radio Association）的社团主页。一个不需要构建、开箱即用的静态网站，可以直接部署到 GitHub Pages。
 
-**线上地址：** <https://njuham.github.io/homepage/>
+**线上地址：** <https://njuham.github.io/>
 
 ## 技术说明
 
@@ -52,10 +52,10 @@ python -m http.server 8000
 
 ## 部署到 GitHub Pages
 
-1. 在 GitHub 新建仓库，例如 `homepage`，并将本仓库推送到 `main` 分支。
+1. 在 GitHub 新建仓库。要部署到根路径，仓库名必须为 `<用户名>.github.io`；本仓库为 `NJUHAM/njuham.github.io`。
 
    ```bash
-   git remote add origin https://github.com/<你的用户名>/<仓库名>.git
+   git remote add origin https://github.com/<你的用户名>/<用户名>.github.io.git
    git branch -M main
    git push -u origin main
    ```
@@ -63,13 +63,13 @@ python -m http.server 8000
 2. 打开仓库 **Settings → Pages**。
 3. 在 **Build and deployment → Source** 中选择 **Deploy from a branch**。
 4. 分支选择 `main`，目录选择 `/ (root)`，保存。
-5. 等待 Actions 完成，访问 `https://<你的用户名>.github.io/<仓库名>/`。
+5. 等待 Actions 完成，访问 `https://<你的用户名>.github.io/`。
 
-如果仓库名为 `<你的用户名>.github.io`，站点会直接部署在 `https://<你的用户名>.github.io/`。站内链接全部使用相对路径，两种部署方式都可以正常工作。
+如果仓库名不是 `<用户名>.github.io`，则会作为项目页面发布在 `https://<用户名>.github.io/<仓库名>/`。站内链接全部使用相对路径，两种部署方式都可以正常工作，但根路径部署的仓库名不能是 `homepage`。
 
 本仓库已启用 GitHub Pages（`main` 分支根目录），之后每次推送 `main` 都会自动重新发布。
 
-> 当前 canonical、`og:image`、`twitter:image` 与结构化数据已指向 `https://njuham.github.io/homepage/`。如果以后更换自定义域名，请全局替换这些绝对地址。
+> 当前 canonical、`og:image`、`twitter:image` 与结构化数据已指向 `https://njuham.github.io/`。如果以后更换自定义域名，请全局替换这些绝对地址。
 
 ## 常见维护
 
@@ -110,8 +110,8 @@ python -m http.server 8000
 `img/og-cover.png` 是 1200 × 630 的分享预览图。`index.html` 中的分享图地址已使用当前线上的绝对地址：
 
 ```html
-<meta property="og:image" content="https://njuham.github.io/homepage/img/og-cover.png">
-<meta name="twitter:image" content="https://njuham.github.io/homepage/img/og-cover.png">
+<meta property="og:image" content="https://njuham.github.io/img/og-cover.png">
+<meta name="twitter:image" content="https://njuham.github.io/img/og-cover.png">
 ```
 
 替换图片时保持文件名不变即可。若以后更换域名，请同步修改这两处以及 `canonical`、`og:url` 和结构化数据中的 `url` / `logo`。
