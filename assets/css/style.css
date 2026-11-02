@@ -1,5 +1,5 @@
 /* =========================================================
-   NJU HAM · 南京大学学生业余无线电协会
+   Nanjing University Student Amateur Radio Association
    Static homepage styles
    ========================================================= */
 
@@ -387,15 +387,17 @@ ol {
 }
 
 .brand-text strong {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  letter-spacing: 0.16em;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
 }
 
 .brand-text small {
-  font-size: 0.58rem;
-  letter-spacing: 0.08em;
-  opacity: 0.62;
+  font-size: 0.56rem;
+  letter-spacing: 0.02em;
+  opacity: 0.68;
+  white-space: nowrap;
 }
 
 .primary-nav {
@@ -2819,14 +2821,17 @@ ol {
 }
 
 .footer-logo b {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }
 
 .footer-logo small {
-  font-size: 0.58rem;
-  letter-spacing: 0.06em;
+  max-width: 290px;
+  font-size: 0.52rem;
+  line-height: 1.5;
+  letter-spacing: 0.025em;
   color: rgba(255, 253, 248, 0.45);
 }
 

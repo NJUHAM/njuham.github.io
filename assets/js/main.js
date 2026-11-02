@@ -1,5 +1,5 @@
 /* =========================================================
-   NJU HAM · interactions
+   Nanjing University Student Amateur Radio Association · interactions
    No dependencies. Everything degrades gracefully.
    ========================================================= */
 
@@ -303,11 +303,11 @@
   };
 
   let audioState = null;
-  const originalMorseLabel = $(".morse-label small")?.textContent || "CQ · CQ · DE NJU HAM";
+  const originalMorseLabel = $(".morse-label small")?.textContent || "CQ · CQ · CQ";
 
   function resetMorseButton() {
     morseButton?.classList.remove("is-playing");
-    morseButton?.setAttribute("aria-label", "播放摩尔斯电码呼号 CQ DE NJU HAM");
+    morseButton?.setAttribute("aria-label", "播放 CQ 摩尔斯电码演示");
     const small = $(".morse-label small");
     if (small) small.textContent = originalMorseLabel;
     audioState = null;
@@ -337,7 +337,7 @@
       return;
     }
 
-    const message = "CQ DE NJU HAM";
+    const message = "CQ CQ CQ";
     const unit = 0.078;
     const context = new AudioContext();
     const oscillator = context.createOscillator();
@@ -391,7 +391,7 @@
     };
 
     morseButton?.classList.add("is-playing");
-    morseButton?.setAttribute("aria-label", "停止播放摩尔斯电码呼号");
+    morseButton?.setAttribute("aria-label", "停止播放 CQ 摩尔斯电码");
     const small = $(".morse-label small");
     if (small) small.textContent = "正在发送 · 73";
 

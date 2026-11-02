@@ -1,8 +1,8 @@
-# NJU HAM · 南京大学学生业余无线电协会
+# 南京大学学生业余无线电协会
 
 > 把世界，调进南大。
 
-南京大学学生业余无线电协会（NJU HAM）的社团主页。一个不需要构建、开箱即用的静态网站，可以直接部署到 GitHub Pages。
+南京大学学生业余无线电协会（Nanjing University Student Amateur Radio Association）的社团主页。一个不需要构建、开箱即用的静态网站，可以直接部署到 GitHub Pages。
 
 **线上地址：** <https://njuham.github.io/homepage/>
 
@@ -52,7 +52,7 @@ python -m http.server 8000
 
 ## 部署到 GitHub Pages
 
-1. 在 GitHub 新建仓库，例如 `njuham-homepage`，并将本仓库推送到 `main` 分支。
+1. 在 GitHub 新建仓库，例如 `homepage`，并将本仓库推送到 `main` 分支。
 
    ```bash
    git remote add origin https://github.com/<你的用户名>/<仓库名>.git
@@ -129,8 +129,8 @@ python -m http.server 8000
 
 ## License
 
-[MIT](./LICENSE) © 2026 NJUHAM
+[MIT](./LICENSE) © 2026 Nanjing University Student Amateur Radio Association
 
 ---
 
-73 DE NJU HAM · See you on the air.
+73 · See you on the air.
