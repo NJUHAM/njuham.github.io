@@ -1,0 +1,6 @@
+# Local previews and build helpers
+.shots/
+.tools/
+.preview-*
+.logo-*
+.mark-*

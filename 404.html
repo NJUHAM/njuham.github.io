@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>信号丢失 · 404 · NJU HAM</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#2c0329">
+  <link rel="icon" href="img/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="img/favicon-64.png" sizes="64x64">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .error-page {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100svh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 78% 30%, rgba(124, 13, 119, 0.5), transparent 36%),
+        radial-gradient(circle at 6% 100%, rgba(99, 4, 96, 0.4), transparent 30%),
+        var(--purple-950);
+      color: var(--white);
+    }
+
+    .error-page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 253, 248, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 253, 248, 0.045) 1px, transparent 1px);
+      background-size: 68px 68px;
+      -webkit-mask-image: radial-gradient(circle at 50% 42%, #000, transparent 72%);
+      mask-image: radial-gradient(circle at 50% 42%, #000, transparent 72%);
+    }
+
+    .error-header {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-top: 28px;
+    }
+
+    .error-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+    }
+
+    .error-brand .brand-mark {
+      width: 36px;
+      height: 36px;
+    }
+
+    .error-brand span:last-child {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .error-brand b {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+    }
+
+    .error-brand small {
+      font-size: 0.58rem;
+      color: rgba(255, 253, 248, 0.52);
+    }
+
+    .error-header > span {
+      font-family: var(--font-mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.18em;
+      color: rgba(255, 253, 248, 0.42);
+    }
+
+    .error-main {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      flex: 1;
+      place-items: center;
+      padding-block: 56px;
+      text-align: center;
+    }
+
+    .error-ghost {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: -1;
+      transform: translate(-50%, -52%);
+      font-family: var(--font-display);
+      font-size: clamp(17rem, 38vw, 34rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.08em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255, 253, 248, 0.075);
+      user-select: none;
+    }
+
+    .error-content {
+      max-width: 660px;
+    }
+
+    .error-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+    }
+
+    .error-label i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(244, 200, 75, 0.12);
+    }
+
+    .error-content h1 {
+      margin-top: 22px;
+      font-family: var(--font-display);
+      font-size: clamp(3.4rem, 8vw, 6.8rem);
+      font-weight: 900;
+      line-height: 1.07;
+      letter-spacing: -0.055em;
+    }
+
+    .error-content h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .error-content p {
+      max-width: 470px;
+      margin: 24px auto 0;
+      color: rgba(255, 253, 248, 0.6);
+      font-size: 0.92rem;
+      line-height: 1.95;
+    }
+
+    .error-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 35px;
+    }
+
+    .error-morse {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 44px;
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.24em;
+      color: rgba(255, 253, 248, 0.34);
+    }
+
+    .error-foot {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding-block: 24px;
+      border-top: 1px solid rgba(255, 253, 248, 0.1);
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.12em;
+      color: rgba(255, 253, 248, 0.34);
+    }
+
+    @media (max-width: 680px) {
+      .error-header > span {
+        display: none;
+      }
+
+      .error-main {
+        padding-block: 34px;
+      }
+
+      .error-content p {
+        font-size: 0.86rem;
+      }
+
+      .error-actions .button {
+        flex: 1;
+        min-width: 130px;
+      }
+
+      .error-foot {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .error-foot span:last-child {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body class="error-page">
+  <header class="error-header container">
+    <a class="error-brand" href="index.html" aria-label="NJU HAM 首页">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span><b>NJU HAM</b><small>南京大学学生业余无线电协会</small></span>
+    </a>
+    <span>SIGNAL STATUS / LOST</span>
+  </header>
+
+  <main class="error-main container">
+    <span class="error-ghost" aria-hidden="true">404</span>
+    <div class="error-content">
+      <span class="error-label"><i aria-hidden="true"></i> 404 · NO SIGNAL</span>
+      <h1>这个频率上，<br>没有<em>信号。</em></h1>
+      <p>你访问的页面可能已经 QSY 到别处，或者从来没有在这个频段出现过。调整一下方向，我们重新呼叫。</p>
+      <div class="error-actions">
+        <a class="button button-primary" href="index.html">返回首页 <span aria-hidden="true">↗</span></a>
+        <a class="button button-ghost" href="index.html#join">加入招新群</a>
+      </div>
+      <div class="error-morse" aria-hidden="true">
+        <span>····—</span>
+        <span>/</span>
+        <span>—————</span>
+        <span>/</span>
+        <span>····—</span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="error-foot container">
+    <span>73 DE NJU HAM · SEE YOU ON THE AIR</span>
+    <span>NANJING UNIVERSITY · CHINA</span>
+  </footer>
+</body>
+</html>
