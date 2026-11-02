@@ -561,8 +561,6 @@
   const photoCards = $$(".photo-card");
   const photoDialog = $("#photoDialog");
   const photoDialogImage = $("#photoDialogImage");
-  const photoDialogCaption = $("#photoDialogCaption");
-  const photoDialogIndex = $("#photoDialogIndex");
   const photoDialogClose = $("#photoDialogClose");
   const photoDialogPrev = $("#photoDialogPrev");
   const photoDialogNext = $("#photoDialogNext");
@@ -573,7 +571,6 @@
       return {
         card,
         src: card.getAttribute("data-full") || image?.getAttribute("src") || "",
-        caption: card.getAttribute("data-caption") || image?.getAttribute("alt") || "",
         alt: image?.getAttribute("alt") || "",
       };
     });
@@ -586,12 +583,6 @@
       const photo = photos[activePhoto];
       photoDialogImage.src = photo.src;
       photoDialogImage.alt = photo.alt;
-      if (photoDialogCaption) photoDialogCaption.textContent = photo.caption;
-      if (photoDialogIndex) {
-        photoDialogIndex.textContent = `${String(activePhoto + 1).padStart(2, "0")} / ${String(
-          photos.length
-        ).padStart(2, "0")}`;
-      }
     }
 
     function openPhoto(index, trigger) {

@@ -388,46 +388,28 @@
         </div>
 
         <div class="gallery-grid" data-reveal>
-          <button class="photo-card photo-card-wide" type="button" data-full="img/lightbox-field.webp" data-caption="山脊架台 · 把天线举过树线，等一次更远的回答。" aria-label="查看照片：山脊架台">
+          <button class="photo-card photo-card-wide" type="button" data-full="img/lightbox-field.webp">
             <img src="img/gallery-field.webp" width="1600" height="640" alt="成员在山脊上手持八木天线进行无线电测向" loading="lazy" decoding="async">
-            <span class="photo-shade" aria-hidden="true"></span>
-            <span class="photo-caption"><b>山脊架台</b><small>FIELD LOG / 01</small></span>
-            <span class="photo-open" aria-hidden="true">↗</span>
           </button>
 
-          <button class="photo-card photo-card-wide" type="button" data-full="img/lightbox-team.webp" data-caption="在场 · 2026 招新现场，第一次见面。" aria-label="查看照片：2026 招新现场合影">
+          <button class="photo-card photo-card-wide" type="button" data-full="img/lightbox-team.webp">
             <img src="img/gallery-team.webp" width="1600" height="640" alt="协会成员在黄色帐篷下合影，桌上摆着电台设备" loading="lazy" decoding="async">
-            <span class="photo-shade" aria-hidden="true"></span>
-            <span class="photo-caption"><b>在场</b><small>2026 招新现场</small></span>
-            <span class="photo-open" aria-hidden="true">↗</span>
           </button>
 
-          <button class="photo-card" type="button" data-full="img/lightbox-station.webp" data-caption="一起开机 · 设备、笔记，还有一群愿意慢慢试的人。" aria-label="查看照片：户外架台现场">
+          <button class="photo-card" type="button" data-full="img/lightbox-station.webp">
             <img src="img/gallery-station.webp" width="900" height="580" alt="成员在户外调试短波电台与电脑" loading="lazy" decoding="async">
-            <span class="photo-shade" aria-hidden="true"></span>
-            <span class="photo-caption"><b>一起开机</b><small>FIELD LOG / 02</small></span>
-            <span class="photo-open" aria-hidden="true">↗</span>
           </button>
 
-          <button class="photo-card" type="button" data-full="img/lightbox-operate.webp" data-caption="值守 · 频率上有人回应，桌上的时间就过得很快。" aria-label="查看照片：成员在操作电台">
+          <button class="photo-card" type="button" data-full="img/lightbox-operate.webp">
             <img src="img/gallery-operate.webp" width="900" height="580" alt="成员坐在桌前操作电台，旁边放着通联记录本" loading="lazy" decoding="async">
-            <span class="photo-shade" aria-hidden="true"></span>
-            <span class="photo-caption"><b>值守</b><small>FIELD LOG / 03</small></span>
-            <span class="photo-open" aria-hidden="true">↗</span>
           </button>
 
-          <button class="photo-card" type="button" data-full="img/lightbox-gear.webp" data-caption="设备细节 · 每一次成功通联，背后都是反复调试。" aria-label="查看照片：电台与设备细节">
+          <button class="photo-card" type="button" data-full="img/lightbox-gear.webp">
             <img src="img/gallery-gear.webp" width="900" height="580" alt="短波电台、电源和线缆的设备特写" loading="lazy" decoding="async">
-            <span class="photo-shade" aria-hidden="true"></span>
-            <span class="photo-caption"><b>设备细节</b><small>FIELD LOG / 04</small></span>
-            <span class="photo-open" aria-hidden="true">↗</span>
           </button>
 
-          <button class="photo-card" type="button" data-full="img/lightbox-antenna.webp" data-caption="两个人，一根天线 · 测向、协作，也是社团日常。" aria-label="查看照片：两位成员协作安装天线">
+          <button class="photo-card" type="button" data-full="img/lightbox-antenna.webp">
             <img src="img/gallery-antenna.webp" width="900" height="580" alt="两位成员在户外协作组装八木天线" loading="lazy" decoding="async">
-            <span class="photo-shade" aria-hidden="true"></span>
-            <span class="photo-caption"><b>两个人，一根天线</b><small>FIELD LOG / 05</small></span>
-            <span class="photo-open" aria-hidden="true">↗</span>
           </button>
         </div>
       </div>
@@ -595,18 +577,13 @@
     </div>
   </nav>
 
-  <dialog class="photo-dialog" id="photoDialog" aria-labelledby="photoDialogCaption">
+  <dialog class="photo-dialog" id="photoDialog" aria-label="活动照片预览">
     <div class="photo-dialog-shell">
       <button class="photo-dialog-close" id="photoDialogClose" type="button" aria-label="关闭大图">×</button>
       <div class="photo-dialog-stage">
         <button class="photo-dialog-nav photo-dialog-prev" id="photoDialogPrev" type="button" aria-label="上一张照片">←</button>
         <img id="photoDialogImage" src="img/gallery-field.webp" alt="">
         <button class="photo-dialog-nav photo-dialog-next" id="photoDialogNext" type="button" aria-label="下一张照片">→</button>
-      </div>
-      <div class="photo-dialog-meta">
-        <span id="photoDialogIndex">01 / 06</span>
-        <p id="photoDialogCaption"></p>
-        <span>STUDENT AMATEUR RADIO / FIELD NOTES</span>
       </div>
     </div>
   </dialog>
