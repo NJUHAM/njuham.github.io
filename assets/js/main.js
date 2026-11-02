@@ -457,4 +457,183 @@
       }, 1800);
     });
   });
+
+  /* ---------- Paged navigation ---------- */
+
+  const pages = $$(".page");
+  const pagerDots = $$(".pager-dots button");
+  const pagerCurrent = $("#pagerCurrent");
+  const pagePrev = $("#pagePrev");
+  const pageNext = $("#pageNext");
+
+  function getHeaderHeight() {
+    const value = Number.parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue("--header-h")
+    );
+    return Number.isFinite(value) ? value : 88;
+  }
+
+  function setActivePage(index) {
+    if (!pages.length) return;
+
+    const safeIndex = Math.max(0, Math.min(pages.length - 1, index));
+    pages.forEach((page, pageIndex) => {
+      page.classList.toggle("is-current", pageIndex === safeIndex);
+    });
+
+    pagerDots.forEach((dot, dotIndex) => {
+      const isActive = dotIndex === safeIndex;
+      dot.classList.toggle("is-active", isActive);
+      if (isActive) dot.setAttribute("aria-current", "page");
+      else dot.removeAttribute("aria-current");
+    });
+
+    if (pagerCurrent) pagerCurrent.textContent = String(safeIndex + 1).padStart(2, "0");
+    if (pagePrev) pagePrev.disabled = safeIndex === 0;
+    if (pageNext) pageNext.disabled = safeIndex === pages.length - 1;
+  }
+
+  function scrollToPage(index) {
+    if (!pages.length) return;
+    const safeIndex = Math.max(0, Math.min(pages.length - 1, index));
+    const target = pages[safeIndex];
+    const top =
+      safeIndex === 0
+        ? 0
+        : target.getBoundingClientRect().top + window.scrollY - getHeaderHeight() + 1;
+
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+  }
+
+  let pageTicking = false;
+
+  function updatePageUI() {
+    if (!pages.length) {
+      pageTicking = false;
+      return;
+    }
+
+    const marker = getHeaderHeight() + 34;
+    let activeIndex = 0;
+
+    pages.forEach((page, index) => {
+      if (page.getBoundingClientRect().top <= marker) activeIndex = index;
+    });
+
+    setActivePage(activeIndex);
+    pageTicking = false;
+  }
+
+  function requestPageUI() {
+    if (!pageTicking) {
+      pageTicking = true;
+      window.requestAnimationFrame(updatePageUI);
+    }
+  }
+
+  pagerDots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      scrollToPage(Number(dot.getAttribute("data-page-index")) || 0);
+    });
+  });
+
+  pagePrev?.addEventListener("click", () => {
+    const current = pagerDots.findIndex((dot) => dot.classList.contains("is-active"));
+    scrollToPage(current - 1);
+  });
+
+  pageNext?.addEventListener("click", () => {
+    const current = pagerDots.findIndex((dot) => dot.classList.contains("is-active"));
+    scrollToPage(current + 1);
+  });
+
+  if (pages.length) {
+    updatePageUI();
+    window.addEventListener("scroll", requestPageUI, { passive: true });
+    window.addEventListener("resize", requestPageUI, { passive: true });
+  }
+
+  /* ---------- Photo lightbox ---------- */
+
+  const photoCards = $$(".photo-card");
+  const photoDialog = $("#photoDialog");
+  const photoDialogImage = $("#photoDialogImage");
+  const photoDialogCaption = $("#photoDialogCaption");
+  const photoDialogIndex = $("#photoDialogIndex");
+  const photoDialogClose = $("#photoDialogClose");
+  const photoDialogPrev = $("#photoDialogPrev");
+  const photoDialogNext = $("#photoDialogNext");
+
+  if (photoDialog && photoDialogImage && photoCards.length) {
+    const photos = photoCards.map((card) => {
+      const image = card.querySelector("img");
+      return {
+        card,
+        src: card.getAttribute("data-full") || image?.getAttribute("src") || "",
+        caption: card.getAttribute("data-caption") || image?.getAttribute("alt") || "",
+        alt: image?.getAttribute("alt") || "",
+      };
+    });
+
+    let activePhoto = 0;
+    let lastPhotoTrigger = null;
+
+    function renderPhoto(index) {
+      activePhoto = (index + photos.length) % photos.length;
+      const photo = photos[activePhoto];
+      photoDialogImage.src = photo.src;
+      photoDialogImage.alt = photo.alt;
+      if (photoDialogCaption) photoDialogCaption.textContent = photo.caption;
+      if (photoDialogIndex) {
+        photoDialogIndex.textContent = `${String(activePhoto + 1).padStart(2, "0")} / ${String(
+          photos.length
+        ).padStart(2, "0")}`;
+      }
+    }
+
+    function openPhoto(index, trigger) {
+      lastPhotoTrigger = trigger || null;
+      renderPhoto(index);
+      document.body.classList.add("lightbox-open");
+      if (typeof photoDialog.showModal === "function") photoDialog.showModal();
+      else photoDialog.setAttribute("open", "");
+    }
+
+    function closePhoto() {
+      document.body.classList.remove("lightbox-open");
+      if (typeof photoDialog.close === "function") photoDialog.close();
+      else photoDialog.removeAttribute("open");
+      lastPhotoTrigger?.focus();
+    }
+
+    photoCards.forEach((card, index) => {
+      card.addEventListener("click", () => openPhoto(index, card));
+    });
+
+    photoDialogClose?.addEventListener("click", closePhoto);
+    photoDialogPrev?.addEventListener("click", () => renderPhoto(activePhoto - 1));
+    photoDialogNext?.addEventListener("click", () => renderPhoto(activePhoto + 1));
+
+    photoDialog.addEventListener("click", (event) => {
+      if (event.target === photoDialog) closePhoto();
+    });
+
+    photoDialog.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        renderPhoto(activePhoto - 1);
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        renderPhoto(activePhoto + 1);
+      }
+    });
+
+    photoDialog.addEventListener("close", () => {
+      document.body.classList.remove("lightbox-open");
+    });
+  }
 })();
